@@ -7,11 +7,11 @@ class Trainer:
 		self.pokemons = list()
 
 	def add_pokemon(self, pokemon: Pokemon):
-		if pokemon not in self.pokemons:
+		if any([pokemon.name == x.name for x in self.pokemons]):
+			return "This pokemon is already caught"
+		else:
 			self.pokemons.append(pokemon)
 			return f"Caught {pokemon.pokemon_details()}"
-
-		return "This pokemon is already caught"
 
 	def release_pokemon(self, pokemon_name: str):
 		for index, pokemon in enumerate(self.pokemons):
