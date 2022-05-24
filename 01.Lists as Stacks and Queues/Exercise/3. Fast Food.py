@@ -8,14 +8,13 @@ max_order = max(orders_queue)
 print(max_order)
 
 # Checking orders ...
-while orders_queue:
+while len(orders_queue) > 0:
 	# Peek (view first element from queue)
 	current_order = orders_queue[0]
-	if current_order <= food_qty:
-		current_order = orders_queue.popleft()
-		food_qty -= current_order
-	else:
+	if current_order > food_qty:
 		break
+	current_order = orders_queue.popleft()
+	food_qty -= current_order
 
 # Print results:
 if orders_queue:
