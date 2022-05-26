@@ -1,4 +1,4 @@
-
+from project.month_mapper import month_mapper
 
 class DVD:
 
@@ -16,23 +16,6 @@ class DVD:
 
 	@classmethod
 	def from_date(cls, id: int, name: str, date: str, age_restriction: int):
-		months_dict = {
-			'1': 'January',
-			'2': 'February',
-			'3': 'March',
-			'4': 'April',
-			'5': 'May',
-			'6': 'June',
-			'7': 'July',
-			'8': 'August',
-			'9': 'September',
-			'10': 'October',
-			'11': 'November',
-			'12': 'December'
-		}
-
-		date_tokens = date.split(".")  # "day.month.year"
-		day, month = date_tokens[0], date_tokens[1]
-		creation_year = int(date_tokens[2])
-		creation_month = months_dict.get(month)
+		day, month, creation_year = map(int, date.split("."))  # "day.month.year"
+		creation_month = month_mapper.get(month)
 		return cls(name, id, creation_year, creation_month, age_restriction)
