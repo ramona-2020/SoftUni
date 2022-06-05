@@ -1,5 +1,5 @@
-from project.pokemon import Pokemon
-from project.trainer import Trainer
+from Exams.OOP.Exam_10_April_2022.project import Pokemon
+from Exams.OOP.Exam_10_April_2022.project import Trainer
 
 # Test Code:
 pokemon = Pokemon("Pikachu", 90)

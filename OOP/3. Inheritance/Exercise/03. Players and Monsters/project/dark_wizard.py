@@ -1,4 +1,4 @@
-from project.wizard import Wizard
+from Exams.OOP.Exam_10_April_2022.project import Wizard
 
 
 class DarkWizard(Wizard):

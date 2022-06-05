@@ -1,5 +1,5 @@
-from project.animal import Animal
-from project.worker import Worker
+from Exams.OOP.Exam_10_April_2022.project import Animal
+from Exams.OOP.Exam_10_April_2022.project import Worker
 
 
 class Zoo:

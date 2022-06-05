@@ -1,4 +1,4 @@
-from project.player import Player
+from Exams.OOP.Exam_10_April_2022.project.player import Player
 
 
 class Team:

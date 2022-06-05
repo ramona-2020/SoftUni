@@ -1,5 +1,5 @@
-from project.person import Person
-from project.employee import Employee
+from Exams.OOP.Exam_10_April_2022.project import Person
+from Exams.OOP.Exam_10_April_2022.project import Employee
 
 
 class Teacher(Person, Employee):

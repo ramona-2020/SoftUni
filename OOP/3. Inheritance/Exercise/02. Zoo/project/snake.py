@@ -1,4 +1,4 @@
-from project.reptile import Reptile
+from Exams.OOP.Exam_10_April_2022.project import Reptile
 
 
 class Snake(Reptile):

@@ -1,5 +1,5 @@
-from project.category import Category
-from project.topic import Topic
+from Exams.OOP.Exam_10_April_2022.project import Category
+from Exams.OOP.Exam_10_April_2022.project import Topic
 
 
 class Document:

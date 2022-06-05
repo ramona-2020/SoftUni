@@ -1,3 +1,0 @@
-
-ll = []
-print(max(ll))

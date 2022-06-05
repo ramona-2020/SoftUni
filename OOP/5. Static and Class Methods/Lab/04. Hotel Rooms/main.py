@@ -1,5 +1,5 @@
-from project.hotel import Hotel
-from project.room import Room
+from Exams.OOP.Exam_10_April_2022.project import Hotel
+from Exams.OOP.Exam_10_April_2022.project import Room
 
 hotel = Hotel.from_stars(5)
 

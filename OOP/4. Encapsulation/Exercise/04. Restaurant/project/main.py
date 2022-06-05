@@ -1,9 +1,6 @@
-from project.beverage.beverage import Beverage
-from project.beverage.coffee import Coffee
-from project.beverage.cold_beverage import ColdBeverage
-from project.food.cake import Cake
-from project.food.soup import Soup
-from project.product import Product
+from Exams.OOP.Exam_10_April_2022.project import Coffee
+from Exams.OOP.Exam_10_April_2022.project import Cake
+from Exams.OOP.Exam_10_April_2022.project import Product
 
 product = Product("coffee", 2.5)
 coffee1 = Coffee("my coff", 1.05)

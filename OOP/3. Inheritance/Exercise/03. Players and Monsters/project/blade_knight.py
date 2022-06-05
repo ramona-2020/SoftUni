@@ -1,4 +1,4 @@
-from project.dark_knight import DarkKnight
+from Exams.OOP.Exam_10_April_2022.project import DarkKnight
 
 
 class BladeKnight(DarkKnight):

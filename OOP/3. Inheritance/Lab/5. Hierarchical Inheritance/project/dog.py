@@ -1,4 +1,4 @@
-from project.animal import Animal
+from Exams.OOP.Exam_10_April_2022.project import Animal
 
 
 class Dog(Animal):

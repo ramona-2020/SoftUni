@@ -1,4 +1,4 @@
-from project.food.main_dish import MainDish
+from Exams.OOP.Exam_10_April_2022.project import MainDish
 
 
 class Salmon(MainDish):

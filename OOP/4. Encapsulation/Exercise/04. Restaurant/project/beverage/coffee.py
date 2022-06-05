@@ -1,4 +1,4 @@
-from project.beverage.hot_beverage import HotBeverage
+from Exams.OOP.Exam_10_April_2022.project import HotBeverage
 
 
 class Coffee(HotBeverage):

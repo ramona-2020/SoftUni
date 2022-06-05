@@ -1,6 +1,6 @@
-from project.category import Category
-from project.topic import Topic
-from project.document import Document
+from Exams.OOP.Exam_10_April_2022.project import Category
+from Exams.OOP.Exam_10_April_2022.project import Topic
+from Exams.OOP.Exam_10_April_2022.project import Document
 
 
 class Storage:

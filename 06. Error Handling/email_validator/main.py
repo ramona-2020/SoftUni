@@ -1,16 +1,4 @@
-
-
-class NameTooShortError(Exception):
-	pass
-
-
-class MustContainAtSymbolError(Exception):
-	pass
-
-
-class InvalidDomainError(Exception):
-	pass
-
+from custom_exceptions import MustContainAtSymbolError, NameTooShortError, InvalidDomainError
 
 def email_validator(email):
 	while True:
@@ -32,5 +20,9 @@ def email_validator(email):
 		email = input()
 
 
-email = input()
-email_validator(email)
+while True:
+	line = input()
+	if line == "End":
+		break
+
+	email_validator(line)

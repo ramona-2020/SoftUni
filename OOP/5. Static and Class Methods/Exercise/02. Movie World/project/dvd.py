@@ -1,4 +1,4 @@
-from project.month_mapper import month_mapper
+from Exams.OOP.Exam_10_April_2022.project import month_mapper
 
 class DVD:
 

@@ -1,4 +1,4 @@
-from project.hero import Hero
+from Exams.OOP.Exam_10_April_2022.project import Hero
 
 
 class Wizard(Hero):

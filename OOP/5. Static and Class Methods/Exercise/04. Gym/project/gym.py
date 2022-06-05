@@ -1,8 +1,8 @@
-from project.customer import Customer
-from project.equipment import Equipment
-from project.exercise_plan import ExercisePlan
-from project.subscription import Subscription
-from project.trainer import Trainer
+from Exams.OOP.Exam_10_April_2022.project import Customer
+from Exams.OOP.Exam_10_April_2022.project import Equipment
+from Exams.OOP.Exam_10_April_2022.project import ExercisePlan
+from Exams.OOP.Exam_10_April_2022.project import Subscription
+from Exams.OOP.Exam_10_April_2022.project import Trainer
 
 
 class Gym:

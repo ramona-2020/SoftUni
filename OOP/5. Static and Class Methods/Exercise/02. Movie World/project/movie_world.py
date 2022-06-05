@@ -1,5 +1,5 @@
-from project.customer import Customer
-from project.dvd import DVD
+from Exams.OOP.Exam_10_April_2022.project import Customer
+from Exams.OOP.Exam_10_April_2022.project import DVD
 
 
 class MovieWorld:

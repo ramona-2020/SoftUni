@@ -1,4 +1,4 @@
-from project.product import Product
+from Exams.OOP.Exam_10_April_2022.project import Product
 
 
 class Drink(Product):

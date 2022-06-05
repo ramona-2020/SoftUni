@@ -1,4 +1,4 @@
-from project.food.dessert import Dessert
+from Exams.OOP.Exam_10_April_2022.project import Dessert
 
 
 class Cake(Dessert):
