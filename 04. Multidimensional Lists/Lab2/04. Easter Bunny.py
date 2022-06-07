@@ -4,66 +4,53 @@ matrix = []
 bunnie_row = 0
 bunnie_col = 0
 
-best_score = 0
+best_score = float('-inf')
 best_direction = ""
-best_path = list()
+best_path = []
 
-# Create matrix:
+
+# Create matrix and get bunnie row and col:
 for row in range(n):
-	line = input().split()
-	matrix.append(line)
+	row_elements = input().split()
 	for col in range(n):
-		if line[col] == "B":
+		if row_elements[col] == "B":
 			bunnie_row = row
 			bunnie_col = col
+	matrix.append(row_elements)
 
 
-def direction_valid(row, col):
+def is_position_valid(row, col):
 	return 0 <= row < n and 0 <= col < n
 
 
-def get_bunnie_row_col(direction, bunnie_row, bunnie_col):
-	if direction == "up":
-		bunnie_row, bunnie_col = bunnie_row - 1, bunnie_col
-	elif direction == "down":
-		bunnie_row, bunnie_col = bunnie_row + 1, bunnie_col
-	elif direction == "left":
-		bunnie_row, bunnie_col = bunnie_row, bunnie_col - 1
-	elif direction == "right":
-		bunnie_row, bunnie_col = bunnie_row, bunnie_col + 1
+directions = {
+	'right': lambda r, c: (r, c + 1),
+	'left': lambda r, c: (r, c - 1),
+	'up': lambda r, c: (r - 1, c),
+	'down': lambda r, c: (r + 1, c)
+}
 
-	return bunnie_row, bunnie_col
+for direction in directions:
+	# direction
+	direction_score = 0
+	direction_path = []
 
+	row, col = directions[direction](bunnie_row, bunnie_col)
 
-def play(bunnie_row, bunnie_col, best_direction, best_score, best_path):
-	directions = ["up", "down", "left", "right"]
-	for direction in directions:
-		# Initial default values for every step
-		current_row, current_col = bunnie_row, bunnie_col
-		current_score = 0
-		current_path = []
+	while is_position_valid(row, col) and matrix[row][col] != 'X':
+		direction_score += int(matrix[row][col])
+		direction_path.append([row, col])
 
-		while True:
-			current_row, current_col = get_bunnie_row_col(direction, current_row, current_col)
+		row, col = directions[direction](row, col)
 
-			is_directions_valid = direction_valid(current_row, current_col)
-			if not is_directions_valid or matrix[current_row][current_col] == 'X':
-				break
-			else:
-				current_path.append([current_row, current_col])
-				current_score += int(matrix[current_row][current_col])
-				if current_score > best_score:
-					best_direction = direction
-					best_score = current_score
-					best_path = current_path
+	if direction_score > best_score and direction_path:
+		best_score = direction_score
+		best_direction = direction
+		best_path = direction_path
 
-	return best_score, best_direction, best_path
+	# print(f"Direction: {direction}; Direction score: {direction_score}")
 
 
-best_score, best_direction, best_path = play(bunnie_row, bunnie_col, best_direction, best_score, best_path)
-
-# Prints results
 print(best_direction)
-for path in best_path:
-	print(path)
+print(*best_path, sep='\n')
 print(best_score)
