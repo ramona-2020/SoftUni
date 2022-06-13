@@ -1,46 +1,37 @@
-n = 6
-points = 0
-matrix = []
-counter = 0
+def is_inside(row, col):
+	return 0 <= row < n and 0 <= col < n
 
-for row in range(n):
+
+def get_points(matrix, col):
+	points = 0
+	for i in range(n):
+		if matrix[i][col] != 'B' and matrix[i][col] != 'X':
+			points += int(matrix[i][col])
+	return points
+
+
+n = 6
+matrix = []
+total_score = 0
+for _ in range(6):
 	matrix.append(input().split())
 
+for _ in range(3):
+	coordinates = input()
+	row, col = [int(x) for x in coordinates.strip('(').strip(')').split(', ')]
 
-def sum_columns(c_col):
-	sum = 0
-	for row in range(n):
-		if matrix[row][c_col] in ['B', 'S']:
-			continue
-		sum += int(matrix[row][c_col])
-	return sum
-
-
-while True:
-	coordinate = input()
-	c_row, c_col = map(int, coordinate[1:][:-1].split(', '))
-	counter += 1
-
-	if not (0 <= c_row < n and 0 <= c_col < n) or matrix[c_row][c_col] != 'B':
-		if counter == 3:
-			break
+	if is_inside(row, col):
+		if matrix[row][col] == 'B':
+			total_score += get_points(matrix, col)
+			matrix[row][col] = 'X'
+	else:
 		continue
 
-	if matrix[c_row][c_col] == 'B':
-		result = sum_columns(c_col)
-		points += result
-		matrix[c_row][c_col] = 'S'
-
-	if counter == 3:
-		break
-
-
-# Prints result:
-if points in [100, 199]:
-	print(f"Good job! You scored {points} points, and you've won Football.")
-elif points in [200, 299]:
-	print(f"Good job! You scored {points} points, and you've won Teddy Bear.")
-elif points >= 300:
-	print(f"Good job! You scored {points} points, and you've won Lego Construction Set.")
-else:
-	print(f"Sorry! You need {100 - points} points more to win a prize.")
+if total_score < 100:
+	print(f"Sorry! You need {100 - total_score} points more to win a prize.")
+if total_score in range(100, 200):
+	print(f"Good job! You scored {total_score} points, and you've won Football.")
+if total_score in range(200, 300):
+	print(f"Good job! You scored {total_score} points, and you've won Teddy Bear.")
+if total_score >= 300:
+	print(f"Good job! You scored {total_score} points, and you've won Lego Construction Set.")
