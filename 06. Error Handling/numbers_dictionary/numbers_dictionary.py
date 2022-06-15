@@ -9,11 +9,9 @@ while True:
     line_num = input()
     try:
         number = int(line_num)
+        numbers_dictionary[line_string] = number
     except ValueError:
         print("The variable number must be an integer")
-        continue
-
-    numbers_dictionary[line_string] = number
 
 
 while True:
@@ -26,7 +24,6 @@ while True:
         print(numbers_dictionary[searched])
     except KeyError:
         print("Number does not exist in dictionary")
-        continue
 
 
 while True:
@@ -38,6 +35,5 @@ while True:
         del numbers_dictionary[searched]
     except KeyError:
         print("Number does not exist in dictionary")
-        continue
 
 print(numbers_dictionary)
