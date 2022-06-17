@@ -1,10 +1,18 @@
 # -----S
 
-my_list = [
-	(3, "Amy"),
-	(3, "Tom"),
-	(3, "George"),
-],
-my_list_of = list(my_list[0])
-print(my_list_of.remove((3, 'Amy')))
-print(my_list_of)
+def my_func(*args):
+
+	operation = args[-1]
+	my_vals = args[:len(args) - 1]
+	result = my_vals[0]
+	if operation == '-':
+		for val in my_vals[1:]:
+			result -= val
+	elif operation == '+':
+		for val in my_vals[1:]:
+			result += val
+
+	return result
+
+
+print(my_func(8, 2, 1, '+'))
