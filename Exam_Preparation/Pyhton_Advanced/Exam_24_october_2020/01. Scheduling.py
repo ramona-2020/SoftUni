@@ -6,9 +6,7 @@ cycles = 0
 
 for i in range(len(jobs)):
     current_job = jobs[i]
-    if current_job < target_job:
-        cycles += current_job
-    elif i != target_index:
+    if current_job < target_job or current_job == target_job and target_index >= i:
         cycles += current_job
 
 print(cycles)
