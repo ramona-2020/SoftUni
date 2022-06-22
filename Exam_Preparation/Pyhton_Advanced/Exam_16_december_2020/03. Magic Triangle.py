@@ -6,18 +6,22 @@ def get_magic_triangle(n):
 		[1, 1],
 	]
 
-	for row in range(1, n-3):
-		numbers_count = len(results_list[1])
-		previous_row = results_list[row]
-		new_row = []
+	for row in range(1, n - len(results_list) + 1):
+		items_nums = len(results_list[row])
 
-		for col in range(numbers_count + 1):
-			if col == 0:
-				new_row.append(1)
+		next_list = []
+		for col in range(items_nums + 1):
+			if col > 0 and col < items_nums:
+				current_sum = results_list[row][col] + results_list[row][col - 1]
 			else:
-				new_row.append(previous_row[col-1] + previous_row[-2])
+				current_sum = results_list[row][0]
 
-	print(results_list)
+			next_list.append(current_sum)
+
+		results_list.append(next_list)
+
+
+	return results_list
 
 
 # Test Code:
