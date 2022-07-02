@@ -1,4 +1,4 @@
-from project.supply.supply import Supply
+from project6.supply.supply import Supply
 
 
 class Drink(Supply):
