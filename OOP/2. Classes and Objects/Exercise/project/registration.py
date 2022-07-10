@@ -1,5 +1,5 @@
-from project.library import Library
-from project.user import User
+from project1.library import Library
+from project1.user import User
 
 
 class Registration:
