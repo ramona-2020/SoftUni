@@ -1,4 +1,4 @@
-from project.room import Room
+from Exam_15_august_2021.project import Room
 
 
 class Hotel:

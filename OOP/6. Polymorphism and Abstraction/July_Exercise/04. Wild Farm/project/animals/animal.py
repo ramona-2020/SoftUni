@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from project.food import Food
+from Exam_15_august_2021.project import Food
 
 
 class Animal(ABC):

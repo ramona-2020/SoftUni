@@ -1,5 +1,5 @@
-from project.animals.animal import Bird
-from project.food import Food, Meat
+from Exam_15_august_2021.project import Bird
+from Exam_15_august_2021.project import Food, Meat
 
 
 class Owl(Bird):
