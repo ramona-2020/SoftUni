@@ -1,11 +1,11 @@
-from project.baked_food.bread import Bread
-from project.baked_food.cake import Cake
-from project.drink.tea import Tea
-from project.drink.water import Water
-from project.table.inside_table import InsideTable
-from project.table.outside_table import OutsideTable
-from project.table.table import Table
-from project.validator import Validator
+from project_01_02.baked_food.bread import Bread
+from project_01_02.baked_food.cake import Cake
+from project_01_02.drink.tea import Tea
+from project_01_02.drink.water import Water
+from project_01_02.table.inside_table import InsideTable
+from project_01_02.table.outside_table import OutsideTable
+from project_01_02.table.table import Table
+from project_01_02.common.validator import Validator
 
 
 class ObjectFactory:

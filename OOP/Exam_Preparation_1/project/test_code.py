@@ -1,5 +1,5 @@
 
-from project.bakery import Bakery
+from project_01_02.bakery import Bakery
 
 
 # Bakery

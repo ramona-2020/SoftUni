@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 
-from project.baked_food.baked_food import BakedFood
-from project.drink.drink import Drink
-from project.validator import Validator
+from project_01_02.baked_food.baked_food import BakedFood
+from project_01_02.drink.drink import Drink
+from project_01_02.common.validator import Validator
 
 
 class Table(ABC):

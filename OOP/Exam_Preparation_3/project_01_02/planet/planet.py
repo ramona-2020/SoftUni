@@ -1,11 +1,11 @@
 from project_01_02.common.validator import Validator
 
 
-class Race:
+class Planet:
 
     def __init__(self, name: str):
         self.name = name
-        self.drivers = []
+        self.items = []
 
     @property
     def name(self):
@@ -13,5 +13,8 @@ class Race:
 
     @name.setter
     def name(self, value):
-        Validator.is_name_valid(value, "Name cannot be an empty string!")
+        Validator.raise_if_empty(
+            value, f"Planet name cannot be empty string or whitespace!")
         self.__name = value
+
+

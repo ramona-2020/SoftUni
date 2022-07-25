@@ -1,4 +1,4 @@
-from project.table.table import Table
+from project_01_02.table.table import Table
 
 
 class OutsideTable(Table):

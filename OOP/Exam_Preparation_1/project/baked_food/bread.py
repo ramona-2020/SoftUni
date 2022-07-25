@@ -1,4 +1,4 @@
-from project.baked_food.baked_food import BakedFood
+from project_01_02.baked_food.baked_food import BakedFood
 
 
 class Bread(BakedFood):

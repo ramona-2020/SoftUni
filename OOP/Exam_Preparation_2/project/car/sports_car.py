@@ -1,4 +1,4 @@
-from project.car.car import Car
+from project_01_02.car.car import Car
 
 
 class SportsCar(Car):
