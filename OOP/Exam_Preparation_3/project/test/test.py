@@ -1,4 +1,4 @@
-from project.library import Library
+from project_test.library import Library
 from unittest import TestCase, main
 
 

@@ -14,7 +14,7 @@ class Vehicle(ABC):
         # It is summer, so both vehicles use air conditioners, and their fuel consumption per km when driving
         needed_fuel = distance * (self.fuel_consumption + self.AIR_CONDITIONER_FUEL_CONSUMPTION)
 
-        # If a vehicle cannot travel the given distance, its fuel does not change
+        # If a 02.vehicle cannot travel the given distance, its fuel does not change
         if needed_fuel <= self.fuel_quantity:
             self.fuel_quantity -= needed_fuel
 
