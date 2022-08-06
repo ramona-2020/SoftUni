@@ -73,14 +73,14 @@ class System:
 		:param name:
 		:param capacity_consumption:
 		:param memory_consumption:
-		:return:
+		:return: LightSoftware
 		"""
 		hardware = System.__get_hardware_with_name(hardware_name)
 		if not hardware:
 			return "Hardware does not exist"
-		express_software_obj = LightSoftware(name, capacity_consumption, memory_consumption)
-		System._software.append(express_software_obj)
-		hardware.install(express_software_obj)
+		light_software_obj = LightSoftware(name, capacity_consumption, memory_consumption)
+		System._software.append(light_software_obj)
+		hardware.install(light_software_obj)
 
 	@staticmethod
 	def release_software_component(hardware_name: str, software_name: str):
@@ -97,11 +97,19 @@ class System:
 		if not hardware or not software:
 			return "Some of the components do not exist"
 
+		# uninstall the software from the given hardware
 		hardware.uninstall(software)
+
+		# remove software from the software list
 		System._software.remove(software)
 
 	@staticmethod
 	def analyze():
+		"""
+		Return the following information (as a string) for the total memory and capacity used
+		(calculated for all hardware components in the system):
+		:return:
+		"""
 		number_of_hardware_components = System.__len_hardware_components()
 		number_of_software_components = System.__len_software_components()
 		total_memory_consumption_of_software_components = System.__total_memory_consumption_for_components("Software")
@@ -145,7 +153,8 @@ Software Components: {names_of_software_components}
 """.strip()
 			result.append(strval)
 
-		return "\n".join(result)
+		if result:
+			return "\n".join(result)
 
 	@classmethod
 	def __get_hardware_with_name(cls, name):
