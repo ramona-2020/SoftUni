@@ -1,7 +1,11 @@
 
+from project.utils.validators import Validator
+
+
 class User:
 
 	MIN_AGE = 6
+	MIN_USERNAME_LENGTH = 1
 
 	def __init__(self, username: str, age: int):
 		self.username = username
@@ -15,8 +19,7 @@ class User:
 
 	@username.setter
 	def username(self, value):
-		if not value:
-			raise ValueError("Invalid username!")
+		self.__validate_username(value)
 		self.__username = value
 
 	@property
@@ -25,26 +28,17 @@ class User:
 
 	@age.setter
 	def age(self, value):
-		if value < self.MIN_AGE:
-			raise ValueError(f"Users under the age of {self.MIN_AGE} are not allowed!")
+		self.__validate_age(value)
 		self.__age = value
 
 	def __str__(self):
-		result = f"Username: {self.username}, Age: {self.age}\n"
-		result += "Liked movies:"
-		if len(self.movies_liked) == 0:
-			result += "No movies liked."
-		else:
-			result += "\n"
-			for movie in self.movies_liked:
-				result += movie.details()
+		pass
 
-		result += "\n"
-		result += "Owned movies:\n"
-		if len(self.movies_owned) == 0:
-			result += "No movies owned."
-		else:
-			for movie in self.movies_owned:
-				result += movie.details()
+	@staticmethod
+	def __validate_username(username):
+		Validator.validate_non_empty_string(
+			username, "Invalid username!")
 
-		return result
+	def __validate_age(self, age):
+		Validator.validate_greater_value(
+			age, self.MIN_AGE, "Users under the age of 6 are not allowed!")
