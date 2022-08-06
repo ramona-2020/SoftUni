@@ -83,7 +83,7 @@ class Bakery:
 				for food_name in available_foods_names:
 					food_obj = self.__get_food_by_name(food_name)
 					table_obj.order_food(food_obj)
-					available_string += f"\n- {food_name}: {food_obj.portion}g - {food_obj.price:.2f}lv"
+					available_string += f"\n - {food_name}: {food_obj.portion}g - {food_obj.price:.2f}lv"
 
 			# Available string:
 			result += available_string
@@ -121,7 +121,7 @@ class Bakery:
 			available_string = f"Table {table_number} ordered:"
 			if available_drinks:
 				for drink in available_drinks:
-					available_string += f"\n- {drink.name} {drink.brand} - {drink.portion:.2f}ml - {drink.price:.2f}lv"
+					available_string += f"\n - {drink.name} {drink.brand} - {drink.portion:.2f}ml - {drink.price:.2f}lv"
 
 			# available string:
 			result += available_string

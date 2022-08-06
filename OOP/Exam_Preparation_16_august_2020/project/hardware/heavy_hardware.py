@@ -1,4 +1,4 @@
-from project.hardware.hardware import Hardware
+from project_1.hardware.hardware import Hardware
 
 
 """

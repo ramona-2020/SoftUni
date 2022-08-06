@@ -1,4 +1,4 @@
-from project.hardware.hardware import Hardware
+from project_1.hardware.hardware import Hardware
 
 """
     • The power hardware is a type of hardware, and its type is "Power"

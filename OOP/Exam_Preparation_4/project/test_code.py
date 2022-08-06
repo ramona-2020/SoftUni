@@ -1,7 +1,7 @@
-from project.controller import Controller
-from project.player import Player
-from project.supply.drink import Drink
-from project.supply.food import Food
+from project_1.controller import Controller
+from project_1.player import Player
+from project_1.supply.drink import Drink
+from project_1.supply.food import Food
 
 controller = Controller()
 apple = Food("apple", 22)

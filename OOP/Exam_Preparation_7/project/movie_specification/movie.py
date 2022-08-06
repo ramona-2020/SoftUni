@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from project.user import User
-from project.utils.validators import Validator
+from project_1.user import User
+from project_1.utils.validators import Validator
 
 
 class Movie(ABC):

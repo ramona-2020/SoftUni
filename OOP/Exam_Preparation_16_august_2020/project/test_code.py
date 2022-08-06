@@ -1,7 +1,7 @@
-from project.hardware.heavy_hardware import HeavyHardware
-from project.software.express_software import ExpressSoftware
-from project.software.light_software import LightSoftware
-from project.system import System
+from project_1.hardware.heavy_hardware import HeavyHardware
+from project_1.software.express_software import ExpressSoftware
+from project_1.software.light_software import LightSoftware
+from project_1.system import System
 
 
 heavy_hardware = HeavyHardware("SSD", 200, 200)
