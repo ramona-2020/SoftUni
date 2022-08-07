@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from project_01_02.common.validator import Validator
+from project.common.validator import Validator
 
 
 class Car(ABC):

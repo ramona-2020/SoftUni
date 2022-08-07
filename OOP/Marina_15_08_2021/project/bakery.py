@@ -1,7 +1,7 @@
-from project.core.factory.drink_factory import DrinkFactory
-from project.core.factory.food_factory import FoodFactory
-from project.core.factory.table_factory import TableFactory
-from project.core.validator.validator import Validator
+from project_test_task.core.factory.drink_factory import DrinkFactory
+from project_test_task.core.factory.food_factory import FoodFactory
+from project_test_task.core.factory.table_factory import TableFactory
+from project_test_task.core.validator.validator import Validator
 
 
 class Bakery:

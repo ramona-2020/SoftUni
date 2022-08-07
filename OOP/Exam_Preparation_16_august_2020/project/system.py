@@ -1,8 +1,8 @@
-from project.hardware.hardware import Hardware
-from project.hardware.power_hardware import PowerHardware
-from project.hardware.heavy_hardware import HeavyHardware
-from project.software.express_software import ExpressSoftware
-from project.software.light_software import LightSoftware
+from project_test_task.hardware.hardware import Hardware
+from project_test_task.hardware.power_hardware import PowerHardware
+from project_test_task.hardware.heavy_hardware import HeavyHardware
+from project_test_task.software.express_software import ExpressSoftware
+from project_test_task.software.light_software import LightSoftware
 
 
 class System:

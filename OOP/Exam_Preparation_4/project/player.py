@@ -1,4 +1,4 @@
-from project.validator import Validator
+from project_test_task.validator import Validator
 
 
 class Player:

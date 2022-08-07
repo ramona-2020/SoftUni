@@ -1,8 +1,8 @@
-from project_01_02.car.car import Car
-from project_01_02.car.muscle_car import MuscleCar
-from project_01_02.car.sports_car import SportsCar
-from project_01_02.driver import Driver
-from project_01_02.race import Race
+from project.car.car import Car
+from project.car.muscle_car import MuscleCar
+from project.car.sports_car import SportsCar
+from project.driver import Driver
+from project.race import Race
 
 
 class ObjectFactory:

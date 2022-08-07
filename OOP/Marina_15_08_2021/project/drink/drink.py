@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from project.core.validator.validator import Validator
+from project_test_task.core.validator.validator import Validator
 
 
 class Drink(ABC):

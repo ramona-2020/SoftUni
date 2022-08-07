@@ -1,4 +1,4 @@
-from project.pet_shop import PetShop
+from project_test_task.pet_shop import PetShop
 from unittest import TestCase
 
 

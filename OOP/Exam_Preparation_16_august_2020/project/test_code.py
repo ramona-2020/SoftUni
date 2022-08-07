@@ -1,4 +1,4 @@
-from project.system import System
+from project_test_task.system import System
 
 System.register_power_hardware("HDD", 200, 200)
 System.register_heavy_hardware("SSD", 400, 400)

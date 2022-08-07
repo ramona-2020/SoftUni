@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from project.validator import Validator
+from project_test_task.validator import Validator
 
 
 class Supply(ABC):

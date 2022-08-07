@@ -1,7 +1,7 @@
-from project.controller import Controller
-from project.player import Player
-from project.supply.drink import Drink
-from project.supply.food import Food
+from project_test_task.controller import Controller
+from project_test_task.player import Player
+from project_test_task.supply.drink import Drink
+from project_test_task.supply.food import Food
 
 controller = Controller()
 apple = Food("apple", 22)

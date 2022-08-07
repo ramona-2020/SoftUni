@@ -1,5 +1,5 @@
-from project.core.validator.validator import Validator
-from project.table.table import Table
+from project_test_task.core.validator.validator import Validator
+from project_test_task.table.table import Table
 
 
 class OutsideTable(Table):

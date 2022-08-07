@@ -1,5 +1,5 @@
-from project.baked_food.bread import Bread
-from project.baked_food.cake import Cake
+from project_test_task.baked_food.bread import Bread
+from project_test_task.baked_food.cake import Cake
 
 
 class FoodFactory:

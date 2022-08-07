@@ -1,4 +1,4 @@
-from project.software.software import Software
+from project_test_task.software.software import Software
 
 
 class Hardware:

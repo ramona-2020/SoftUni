@@ -1,5 +1,5 @@
 from unittest import TestCase
-from project.team import Team
+from project_test_task.team import Team
 
 
 class TeamTest(TestCase):

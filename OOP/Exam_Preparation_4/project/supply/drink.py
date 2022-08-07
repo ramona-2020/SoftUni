@@ -1,4 +1,4 @@
-from project.supply.supply import Supply
+from project_test_task.supply.supply import Supply
 
 
 class Drink(Supply):
