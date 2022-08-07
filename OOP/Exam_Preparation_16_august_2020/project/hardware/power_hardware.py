@@ -1,4 +1,4 @@
-from project_1.hardware.hardware import Hardware
+from project.hardware.hardware import Hardware
 
 """
     • The power hardware is a type of hardware, and its type is "Power"
@@ -10,6 +10,6 @@ from project_1.hardware.hardware import Hardware
 class PowerHardware(Hardware):
 
 	def __init__(self, name, capacity, memory):
-		super().__init__(name, "Power", int(0.25 * capacity), int(0.75 * memory + memory))
+		super().__init__(name, "Power", int(0.25 * capacity), int(1.75 * memory))
 
 		# 200, 200 ok

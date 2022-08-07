@@ -1,36 +1,14 @@
-from project_1.hardware.hardware import Hardware
-from project_1.hardware.power_hardware import PowerHardware
-from project_1.hardware.heavy_hardware import HeavyHardware
-from project_1.software.express_software import ExpressSoftware
-from project_1.software.light_software import LightSoftware
+from project.hardware.hardware import Hardware
+from project.hardware.power_hardware import PowerHardware
+from project.hardware.heavy_hardware import HeavyHardware
+from project.software.express_software import ExpressSoftware
+from project.software.light_software import LightSoftware
 
 
 class System:
 	# storing all the hardware components
 	_hardware = []
 	_software = []
-
-	@staticmethod
-	def __len_hardware_components():
-		return len(System._hardware)
-
-	@staticmethod
-	def __len_software_components():
-		return len(System._software)
-
-	@staticmethod
-	def __total_memory_consumption_for_components(type: str):
-		if type == "Software":
-			return sum([sc.memory_consumption for sc in System._software])
-		if type == "Hardware":
-			return sum([h.memory for h in System._hardware])
-
-	@staticmethod
-	def __total_capacity_consumption_for_components(type: str):
-		if type == "Software":
-			return sum([sc.capacity_consumption for sc in System._software])
-		if type == "Hardware":
-			return sum([h.capacity for h in System._hardware])
 
 	@staticmethod
 	def register_power_hardware(name: str, capacity: int, memory: int):
@@ -105,27 +83,20 @@ class System:
 
 	@staticmethod
 	def analyze():
-		"""
-		Return the following information (as a string) for the total memory and capacity used
-		(calculated for all hardware components in the system):
-		:return:
-		"""
-		number_of_hardware_components = System.__len_hardware_components()
-		number_of_software_components = System.__len_software_components()
-		total_memory_consumption_of_software_components = System.__total_memory_consumption_for_components("Software")
-		total_memory_consumption_of_hardware_components = System.__total_memory_consumption_for_components("Hardware")
+		hardware_components = len(System._hardware)
+		software_components = len(System._software)
+		total_memory_consumption_software = sum([sc.memory_consumption for sc in System._software])
+		total_hardware_memory = sum([h.memory for h in System._hardware])
 
-		total_capacity_consumption_of_software_components = System.__total_capacity_consumption_for_components("Software")
-		total_capacity_consumption_of_hardware_components = System.__total_capacity_consumption_for_components("Hardware")
+		total_capacity_consumption_software = sum([sc.capacity_consumption for sc in System._software])
+		total_capacity_hardware = sum([sc.capacity for sc in System._hardware])
 
-		resval = \
-f"""System Analysis
-Hardware Components: {number_of_hardware_components}
-Software Components: {number_of_software_components}
-Total Operational Memory: {total_memory_consumption_of_software_components} / {total_memory_consumption_of_hardware_components}
-Total Capacity Taken: {total_capacity_consumption_of_software_components} / {total_capacity_consumption_of_hardware_components}
-""".strip()
-		return resval
+		retval = "System Analysis"
+		retval += f'\nHardware Components: {hardware_components}'
+		retval += f'\nSoftware Components: {software_components}'
+		retval += f'\nTotal Operational Memory: {total_memory_consumption_software} / {total_hardware_memory}'
+		retval += f'\nTotal Capacity Taken: {total_capacity_consumption_software} / {total_capacity_hardware}'
+		return retval
 
 	@staticmethod
 	def system_split():
@@ -135,26 +106,25 @@ Total Capacity Taken: {total_capacity_consumption_of_software_components} / {tot
 		"""
 		result = []
 		for hardware in System._hardware:
-			number_of_installed_express_software_components = hardware.len_express_software_components()
-			number_of_installed_light_software_components = hardware.len_light_software_components()
-			total_memory_used_of_software_component = hardware.total_memory_used_from_installed_software_components()
-			total_capacity_used_of_software_component = hardware.total_capacity_used_from_installed_software_components()
-			names_of_software_components = hardware.get_software_components_names()
+			express_software_components = len([soft for soft in hardware.software_components if soft.software_type == "Express"])
+			light_software_components = len([soft for soft in hardware.software_components if soft.software_type == "Light"])
+			total_memory_software_component = sum([soft.memory_consumption for soft in hardware.software_components])
+			total_capacity_software_component = sum([soft.capacity_consumption for soft in hardware.software_components])
+			software_components = ', '.join([soft.name for soft in hardware.software_components])
+			if len(hardware.software_components) == 0:
+				software_components = 'None'
 
-			strval = \
-f"""
-Hardware Component - {hardware.name}
-Express Software Components: {number_of_installed_express_software_components}
-Light Software Components: {number_of_installed_light_software_components}
-Memory Usage: {total_memory_used_of_software_component} / {hardware.memory}
-Capacity Usage: {total_capacity_used_of_software_component} / {hardware.capacity}
-Type: {hardware.hardware_type}
-Software Components: {names_of_software_components}
-""".strip()
+			strval = f"Hardware Component - {hardware.name}"
+			strval += f"\nExpress Software Components: {express_software_components}"
+			strval += f"\nLight Software Components: {light_software_components}"
+			strval += f"\nMemory Usage: {total_memory_software_component} / {hardware.memory}"
+			strval += f"\nCapacity Usage: {total_capacity_software_component} / {hardware.capacity}"
+			strval += f"\nType: {hardware.hardware_type}"
+			strval += f"\nSoftware Components: {software_components}"
+
 			result.append(strval)
 
-		if result:
-			return "\n".join(result)
+		return "\n".join([r.strip() for r in result])
 
 	@classmethod
 	def __get_hardware_with_name(cls, name):

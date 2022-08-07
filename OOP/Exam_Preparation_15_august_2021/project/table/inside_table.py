@@ -8,7 +8,7 @@ class InsideTable(Table):
 
 	@property
 	def type(self):
-		return "Inside table"
+		return "InsideTable"
 
 	@property
 	def min_number(self):

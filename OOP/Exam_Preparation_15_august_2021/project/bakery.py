@@ -72,73 +72,37 @@ class Bakery:
 		if not table_obj:
 			return f"Could not find table {table_number}"
 
-		# Available and unavailable foods
-		result = ""
-		available_foods_names, unavailable_foods_names = self.__get_foods_in_menu(*food_names) # [], []
+		available_foods = f"Table {table_number} ordered:\n"
+		unavailable_foods = f"{self.name} does not have in the menu:\n"
 
-		# (1) available foods
-		if available_foods_names:
-			available_string = f"Table {table_number} ordered:"
-			if available_foods_names:
-				for food_name in available_foods_names:
-					food_obj = self.__get_food_by_name(food_name)
-					table_obj.order_food(food_obj)
-					available_string += f"\n - {food_name}: {food_obj.portion}g - {food_obj.price:.2f}lv"
+		for food_name in food_names:
+			food_obj = self.__get_food_by_name(food_name)
+			if not food_obj:
+				unavailable_foods += f"{food_name}\n"
+			else:
+				table_obj.order_food(food_obj)
+				available_foods += f"{repr(food_obj)}\n"
 
-			# Available string:
-			result += available_string
+		return (available_foods + unavailable_foods).strip()
 
-		# (2) unavailable foods
-		if unavailable_foods_names:
-			if available_foods_names:
-				result += "\n"
-			unavailable_string = f"{self.name} does not have in the menu:"
-			if unavailable_foods_names:
-				for food_name in unavailable_foods_names:
-					unavailable_string += f"\n{food_name}"
-
-			result += unavailable_string
-
-		return result
-
-	def order_drink(self, table_number: int, *drinks_name: str):
+	def order_drink(self, table_number: int, *drinks_names: str):
 		table_obj = self.__get_table_with_table_number(table_number)
 		if not table_obj:
 			return f"Could not find table {table_number}"
 
 		# Available and unavailable drinks
-		result = ""
-		available_drinks_names, unavailable_drinks_names = self.__get_drinks_in_menu(*drinks_name)
+		available_drinks = f"Table {table_number} ordered:\n"
+		unavailable_drinks = f"{self.name} does not have in the menu:\n"
 
-		if available_drinks_names:
-			available_drinks = []
-			for drink_name in available_drinks_names:
-				drink_obj = self.__get_drink_by_name(drink_name)
-				available_drinks.append(drink_obj)
+		for drink_name in drinks_names:
+			drink_obj = self.__get_drink_by_name(drink_name)
+			if not drink_obj:
+				unavailable_drinks += f"{drink_name}\n"
+			else:
 				table_obj.order_drink(drink_obj)
+				available_drinks += f"{repr(drink_obj)}\n"
 
-			# (1) available drinks
-			available_string = f"Table {table_number} ordered:"
-			if available_drinks:
-				for drink in available_drinks:
-					available_string += f"\n - {drink.name} {drink.brand} - {drink.portion:.2f}ml - {drink.price:.2f}lv"
-
-			# available string:
-			result += available_string
-
-		# (2) unavailable drinks
-		if unavailable_drinks_names:
-			if available_drinks_names:
-				result += "\n"
-			unavailable_string = f"{self.name} does not have in the menu:"
-			if unavailable_drinks_names:
-				for drink_name in unavailable_drinks_names:
-					unavailable_string += f"\n{drink_name}"
-
-			# unavailable string:
-			result += unavailable_string
-
-		return result
+		return (available_drinks + unavailable_drinks).strip()
 
 	def leave_table(self, table_number: int):
 		table = self.__get_table_with_table_number(table_number)
@@ -218,33 +182,6 @@ class Bakery:
 		for table in self.tables_repository:
 			if table.table_number == table_number:
 				return table
-
-	def __get_foods_in_menu(self, *food_names: str) -> tuple:
-		available_foods_names = []
-		unavailable_foods_names = []
-		food_names_from_menu = self.__get_foods_name_from_menu()  # [fn1, fn2, fn3, ...]
-
-		for food_name in food_names:
-			if food_name in food_names_from_menu:
-				available_foods_names.append(food_name)
-			else:
-				unavailable_foods_names.append(food_name)
-
-		return available_foods_names, unavailable_foods_names
-
-	def __get_drinks_in_menu(self, *drink_names: str):
-		available_drinks_name = []
-		unavailable_drinks_name = []
-
-		drink_names_from_menu = self.__get_drinks_name_from_menu()
-
-		for drink_name in drink_names:
-			if drink_name in drink_names_from_menu:
-				available_drinks_name.append(drink_name)
-			else:
-				unavailable_drinks_name.append(drink_name)
-
-		return available_drinks_name, unavailable_drinks_name
 
 	def __get_free_tables(self):
 		return [table for table in self.tables_repository if not table.is_reserved]

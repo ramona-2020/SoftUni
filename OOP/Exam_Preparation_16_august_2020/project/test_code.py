@@ -1,12 +1,13 @@
-from project_1.hardware.heavy_hardware import HeavyHardware
-from project_1.software.express_software import ExpressSoftware
-from project_1.software.light_software import LightSoftware
-from project_1.system import System
+from project.system import System
 
-
-heavy_hardware = HeavyHardware("SSD", 200, 200)
-light_software = LightSoftware("Excel", 200, 200)
-express_software = ExpressSoftware("Power Point", 100, 50)
-express_software_two = ExpressSoftware("Power Point2", 100, 50)
-
+System.register_power_hardware("HDD", 200, 200)
+System.register_heavy_hardware("SSD", 400, 400)
+print(System.analyze())
+System.register_light_software("HDD", "Test", 0, 10)
+System.register_express_software("HDD", "Test3", 50, 100)
+# System.register_light_software("SSD", "Windows", 20, 50)
+System.register_express_software("SSD", "Linux", 50, 100)
+# System.register_light_software("SSD", "Unix", 20, 50)
+print(System.analyze())
+System.release_software_component("SSD", "Linux")
 print(System.system_split())

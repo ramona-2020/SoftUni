@@ -1,37 +1,25 @@
-from project.baked_food.bread import Bread
 from project.bakery import Bakery
-from project.drink.tea import Tea
-from project.table.inside_table import InsideTable
-from project.table.outside_table import OutsideTable
-from project.table.table import Table
 
-bread = Bread("Franzela", 10)
-tea = Tea("IceTea", 100, "Ice Brand")
+bakery = Bakery("Sunny")
+print(bakery.add_food("Bread", "Sour", 1.50))
+print(bakery.add_food("Bread", "White", 1.30))
+print(bakery.add_food("Cake", "Chocolate", 2.90))
+print(bakery.add_food("Cake", "Vanilla", 2.90))
 
-ins_table1 = InsideTable(1, 1)
-ins_table2 = InsideTable(1, 1)
-outs_table1 = OutsideTable(51, 1)
-bakery1 = Bakery("Bake_name")
+print(bakery.add_drink("Water", "Spring", 250, "Bankya"))
+print(bakery.add_drink("Water", "Mineral", 500, "Devin"))
+print(bakery.add_drink("Tea", "Black", 250, "Ahmad Tea"))
+print(bakery.add_drink("Tea", "Green", 250, "Lipton"))
 
+print(bakery.add_table("OutsideTable", 52, 10))
+print(bakery.add_table("OutsideTable", 95, 15))
+print(bakery.add_table("InsideTable", 15, 15))
+print(bakery.add_table("InsideTable", 4, 15))
 
-print(bakery1.add_drink("Water", "Cold_w5", 80, "br_and"))
-print(bakery1.add_drink("Water", "Cold_w1", 40, "br_and"))
-
-print(bakery1.add_food("Bread", "Franzela", 4))
-
-print(bakery1.food_menu)
-print(bakery1.drinks_menu)
-print("-------------")
-
-print(bakery1.add_table("InsideTable", 1, 6))
-print(bakery1.add_table("InsideTable", 2, 1))
-print(bakery1.add_table("OutsideTable", 51, 40))
-print(bakery1.reserve_table(1))
-print(bakery1.reserve_table(1))
-print(bakery1.reserve_table(35))
-
-
-# print(bakery1.order_food(51, "Franzela", "Franzela2"))
-print(bakery1.order_drink(51, "Cold_w1", "Cold_w122"))
-
-
+print(bakery.reserve_table(12))
+print(bakery.order_food(95, "Sour", "White", "Chocolate", "Vanilla", "Strawberry", "Hazelnut", "Wholegrain"))
+print(bakery.order_drink(95, "Spring", "Mineral", "Black", "Green", "White", "Tap", "Fruit"))
+print(bakery.leave_table(95))
+print(bakery.total_income)
+print(bakery.get_free_tables_info())
+print(bakery.get_total_income())

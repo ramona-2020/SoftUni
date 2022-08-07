@@ -1,5 +1,5 @@
 
-from project_1.software.software import Software
+from project.software.software import Software
 
 
 """

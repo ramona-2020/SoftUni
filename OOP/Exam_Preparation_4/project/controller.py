@@ -1,6 +1,6 @@
-from project_1.player import Player
-from project_1.supply.supply import Supply
-from project_1.validator import Validator
+from project.player import Player
+from project.supply.supply import Supply
+from project.validator import Validator
 
 
 class Controller:

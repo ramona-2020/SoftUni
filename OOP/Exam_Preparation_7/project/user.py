@@ -1,5 +1,5 @@
 
-from project_1.utils.validators import Validator
+from project.utils.validators import Validator
 
 
 class User:

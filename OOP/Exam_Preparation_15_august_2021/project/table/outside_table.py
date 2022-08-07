@@ -8,7 +8,7 @@ class OutsideTable(Table):
 
 	@property
 	def type(self):
-		return "Outside table"
+		return "OutsideTable"
 
 	@property
 	def min_number(self):

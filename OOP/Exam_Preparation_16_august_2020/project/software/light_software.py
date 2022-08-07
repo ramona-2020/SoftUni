@@ -1,4 +1,4 @@
-from project_1.software.software import Software
+from project.software.software import Software
 
 
 """
@@ -12,5 +12,5 @@ class LightSoftware(Software):
 	def __init__(self, name, capacity_consumption, memory_consumption: int):
 		super().__init__(name,
 						 "Light",
-						 int(capacity_consumption + 0.5 * capacity_consumption),
-						 int(memory_consumption - 0.5 * memory_consumption))
+						 int(1.5 * capacity_consumption),
+						 int(0.5 * memory_consumption))
