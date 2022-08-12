@@ -31,20 +31,23 @@ class User:
         self._age = value
 
     def __str__(self):
-        result = f"Username: {self.username}, Age: {self.age}"
-        result += "\nLiked movies:"
-
+        result = f"Username: {self.username}, Age: {self.age}\n"
+        result += "Liked movies:\n"
         if len(self.movies_liked) == 0:
-            result += "No movies liked."
+            result += "No movies liked.\n"
         else:
-            for m in self.movies_liked:
-                result += f"\n{m.details()}"
+            movie_details = ""
+            for movie in self.movies_liked:
+                movie_details += movie.details() + "\n"
+            result += movie_details.strip()
 
-        result += "\nOwned movies:"
+        result += "Owned movies:\n"
         if len(self.movies_owned) == 0:
-            result += "No movies owned."
+            result += "No movies owned.\n"
         else:
-            for m in self.movies_owned:
-                result += f"\n{m.details()}"
+            movie_details = ""
+            for movie in self.movies_owned:
+                movie_details += movie.details() + "\n"
+            result += movie_details.strip()
 
         return result.strip()

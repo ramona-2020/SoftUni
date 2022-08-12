@@ -60,8 +60,9 @@ class MovieApp:
         self.movies_collection.remove(movie_obj)
 
         user_obj = self.find_user_by_username(username)
-        user_obj.movies_owned.remove(movie_obj)
-        return f"{username} successfully deleted {movie_obj.title} movie."
+        if user_obj:
+            user_obj.movies_owned.remove(movie_obj)
+            return f"{username} successfully deleted {movie_obj.title} movie."
 
     def like_movie(self, username: str, movie: Movie):
         if movie.owner.username == username:
@@ -88,8 +89,11 @@ class MovieApp:
         if len(self.movies_collection) == 0:
             return "No movies found."
 
+        result = ""
         sorted_movies = sorted(self.movies_collection, key=lambda x: (-x.year, x.title))
-        return "\n".join([m.details() for m in sorted_movies]).strip()
+        for movie in sorted_movies:
+            result += f"{movie.details()}\n"
+        return result.strip()
 
     def __str__(self):
         result = f"All users: "
@@ -99,7 +103,8 @@ class MovieApp:
         else:
             result += ", ".join([user.username for user in self.users_collection])
 
-        result += f"\nAll movies: "
+        result += "\n"
+        result += f"All movies: "
         if len(self.movies_collection) == 0:
             result += "No movies."
         else:
@@ -112,14 +117,10 @@ class MovieApp:
             if user.username == username:
                 return user
 
-        return None
-
     def find_movie_by_title(self, title: str) -> Movie or None:
         for movie in self.movies_collection:
             if movie.title == title:
                 return movie
-
-        return None
 
     def print_users_collection(self):
         return [u.username for u in self.users_collection]
