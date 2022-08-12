@@ -37,7 +37,7 @@ class BaseAquarium(ABC):
 
         if fish.fish_type in ["FreshwaterFish", "SaltwaterFish"]:
             self.fish.append(fish)
-            return "Successfully added {fish_type} to {aquarium_name}."
+            return f"Successfully added {fish.fish_type} to {self.aquarium_type}."
 
     def remove_fish(self, fish: BaseFish):
         self.fish.remove(fish)

@@ -10,8 +10,9 @@ class DecorationRepository:
         self.decorations.append(decoration)
 
     def remove(self, decoration: BaseDecoration) -> True or False:
-        if decoration in self.decorations:
-            self.decorations.remove(decoration)
+        for i in range(len(self.decorations)):
+            decoration = self.decorations[i]
+            self.decorations.pop(i)
             return True
         return False
 

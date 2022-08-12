@@ -18,9 +18,11 @@ class Controller:
         if aquarium_type == "SaltwaterAquarium":
             aquarium = SaltwaterAquarium(aquarium_name)
             self.aquariums.append(aquarium)
+            return f"Successfully added {aquarium_type}."
         elif aquarium_type == "FreshwaterAquarium":
             aquarium = FreshwaterAquarium(aquarium_name)
             self.aquariums.append(aquarium)
+            return f"Successfully added {aquarium_type}."
         else:
             return "Invalid aquarium type."
 
@@ -35,14 +37,16 @@ class Controller:
             return "Invalid decoration type."
 
     def insert_decoration(self, aquarium_name: str, decoration_type: str):
-        for decoration in self.decorations_repository.decorations:
-            if decoration.decoration_type == decoration_type:
-                aquarium = self._get_aquarium_by_name(aquarium_name)
-                aquarium.add_decoration(decoration)
-                self.decorations_repository.remove(decoration)
-                return f"Successfully added {decoration_type} to {aquarium_name}."
+        aquarium = self._get_aquarium_by_name(aquarium_name)
 
-        return f"There isn't a decoration of type {decoration_type}."
+        if aquarium:
+            for decoration in self.decorations_repository.decorations:
+                if decoration.decoration_type == decoration_type:
+                    aquarium.add_decoration(decoration)
+                    self.decorations_repository.remove(decoration)
+                    return f"Successfully added {decoration_type} to {aquarium_name}."
+
+            return f"There isn't a decoration of type {decoration_type}."
 
     def add_fish(self, aquarium_name: str, fish_type: str, fish_name: str, fish_species: str, price: float):
         if fish_type not in ["FreshwaterFish", "SaltwaterFish"]:
@@ -59,37 +63,31 @@ class Controller:
         # Create fish object and add it to aquarium
         if fish_type == "FreshwaterFish":
             fish = FreshwaterFish(fish_name, fish_species, price)
-            if aquarium.capacity == len(aquarium.fishe):
-                return "Not enough capacity."
-
-            aquarium.add_fish(fish)
-            return f"Successfully added {fish_type} to {aquarium_name}."
+            result = aquarium.add_fish(fish)
+            return result
 
         if fish_type == "SaltwaterFish":
             fish = SaltwaterFish(fish_name, fish_species, price)
-            if aquarium.capacity == len(aquarium.fishe):
-                return "Not enough capacity."
-
-            aquarium.add_fish(fish)
-            return f"Successfully added {fish_type} to {aquarium_name}."
+            result = aquarium.add_fish(fish)
+            return result
 
     def feed_fish(self, aquarium_name: str):
         aquarium = self._get_aquarium_by_name(aquarium_name)
         fed_count = 0
         for fish in aquarium.fish:
-            fish.feed()
+            fish.eat()
             fed_count += 1
 
         return f"Fish fed: {fed_count}"
 
     def calculate_value(self, aquarium_name: str):
         aquarium = self._get_aquarium_by_name(aquarium_name)
+        if aquarium:
+            fish_total_price = sum([fish.price for fish in aquarium.fish])
+            decorations_total_price = sum([d.price for d in aquarium.decorations])
 
-        fish_total_price = sum([fish.price for fish in aquarium.fish])
-        decorations_total_price = sum([d.price for d in aquarium.decorations])
-
-        value = fish_total_price + decorations_total_price
-        return f"The value of Aquarium {aquarium_name} is {value:.2f}."
+            value = fish_total_price + decorations_total_price
+            return f"The value of Aquarium {aquarium_name} is {value:.2f}."
 
     def report(self):
         result = ""
