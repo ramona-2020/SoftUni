@@ -39,6 +39,11 @@ class Controller:
         if not player.need_sustenance:
             return f"{player_name} have enough stamina."
 
+        if sustenance_type == "Food" and not any([s for s in self.supplies if s.supply_type == "Food"]):
+            raise Exception("There are no food supplies left!")
+        if sustenance_type == "Drink" and not any([s for s in self.supplies if s.supply_type == "Drink"]):
+            raise Exception("There are no drink supplies left!")
+
         for index in range(len(self.supplies) - 1, -1, -1):
             supply = self.supplies[index]
 
@@ -47,12 +52,8 @@ class Controller:
                 player.increase_stamina(supply.energy)
 
                 # remove the supply from the list
-                self.supplies.pop(index)
+                self.supplies.remove(supply)
                 return f"{player_name} sustained successfully with {supply.name}."
-        if sustenance_type == "Food":
-            raise Exception("There are no food supplies left!")
-        else:
-            raise Exception("There are no drink supplies left!")
 
     def duel(self, first_player_name: str, second_player_name: str):
         first_player = self.get_player_by_name(first_player_name)
