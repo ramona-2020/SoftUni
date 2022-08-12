@@ -26,14 +26,24 @@ class BaseAquarium(ABC):
     def calculate_comfort(self):
         return sum(d.comfort for d in self.decorations)
 
-    def add_fish(self, fish: BaseFish):
+    @property
+    @abstractmethod
+    def aquarium_type(self):
         pass
+
+    def add_fish(self, fish: BaseFish):
+        if self.capacity == len(self.fish):
+            return "Not enough capacity."
+
+        if fish.fish_type in ["FreshwaterFish", "SaltwaterFish"]:
+            self.fish.append(fish)
+            return "Successfully added {fish_type} to {aquarium_name}."
 
     def remove_fish(self, fish: BaseFish):
-        pass
+        self.fish.remove(fish)
 
     def add_decoration(self, decoration: BaseDecoration):
-        pass
+        self.decorations.append(decoration)
 
     def feed(self):
         for fish in self.fish:
