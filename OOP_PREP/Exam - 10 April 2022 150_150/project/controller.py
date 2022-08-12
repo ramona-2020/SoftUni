@@ -10,23 +10,20 @@ class Controller:
 
     def add_player(self, *players: Player):
         result = "Successfully added: "
-        added_players = []
 
+        successfully_added_players = []
         for player in players:
-            player_obj = self.get_player_by_name(player.name)
+            if player not in self.players:
+                self.players.append(player)
+                successfully_added_players.append(player.name)
 
-            if player_obj is None:
-                added_players.append(player)
-
-        self.players.extend(added_players)
-        result += ", ".join(player.name for player in added_players)
+        result += ", ".join(successfully_added_players)
 
         return result
 
     def add_supply(self, *supplies: Supply):
         # A supply could be added multiple times
-        for supply in supplies:
-            self.supplies.append(supply)
+        self.supplies.extend(supplies)
 
     def sustain(self, player_name: str, sustenance_type: str):
         # check allowed sustain types:
@@ -37,14 +34,6 @@ class Controller:
         check_fro_player_obj = self.get_player_by_name(player_name)
         if check_fro_player_obj is None:
             return
-
-        # Exception: "There are no food supplies left!"
-        if not any([supply for supply in self.supplies if supply.supply_type == "Food"]):
-            raise Exception("There are no food supplies left!")
-
-        # Exception: "There are no drink supplies left!"
-        if not any([supply for supply in self.supplies if supply.supply_type == "Drink"]):
-            raise Exception("There are no drink supplies left!")
 
         player = self.get_player_by_name(player_name)
         if not player.need_sustenance:
@@ -60,6 +49,10 @@ class Controller:
                 # remove the supply from the list
                 self.supplies.pop(index)
                 return f"{player_name} sustained successfully with {supply.name}."
+        if sustenance_type == "Food":
+            raise Exception("There are no food supplies left!")
+        else:
+            raise Exception("There are no drink supplies left!")
 
     def duel(self, first_player_name: str, second_player_name: str):
         first_player = self.get_player_by_name(first_player_name)
