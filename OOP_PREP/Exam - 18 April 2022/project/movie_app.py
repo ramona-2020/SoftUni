@@ -9,31 +9,31 @@ class MovieApp:
         self.users_collection = []
 
     def register_user(self, username: str, age: int):
-        find_user_obj = self.find_user_by_username(username)
-        if find_user_obj:
-            raise Exception("User already exists!")
-
         user_obj = User(username, age)
         if user_obj.username not in [u.username for u in self.users_collection]:
             self.users_collection.append(user_obj)
             return f"{user_obj.username} registered successfully."
 
+        find_user_obj = self.find_user_by_username(username)
+        if find_user_obj:
+            raise Exception("User already exists!")
+
     def upload_movie(self, username: str, movie: Movie):
-        user_obj = self.find_user_by_username(username)
-        if not user_obj:
+        if username not in [u.username for u in self.users_collection]:
             raise Exception("This user does not exist!")
 
         movie_obj = self.find_movie_by_title(movie.title)
         if movie_obj:
             raise Exception("Movie already added to the collection!")
 
+        user_obj = self.find_user_by_username(username)
         if movie.owner.username != user_obj.username:
-            raise Exception(f"{user_obj.username} is not the owner of the movie {movie.title}!")
+            raise Exception(f"{username} is not the owner of the movie {movie.title}!")
 
         # The method adds the movie to the user's movies_owned list as well as the movies_collection list:
         self.movies_collection.append(movie)
         user_obj.movies_owned.append(movie)
-        return f"{user_obj.username} successfully added {movie.title} movie."
+        return f"{username} successfully added {movie.title} movie."
 
     def edit_movie(self, username: str, movie: Movie, **kwargs):
         movie_obj = self.find_movie_by_title(movie.title)
@@ -61,7 +61,7 @@ class MovieApp:
 
         user_obj = self.find_user_by_username(username)
         user_obj.movies_owned.remove(movie_obj)
-        return f"{user_obj.username} successfully deleted {movie_obj.title} movie."
+        return f"{username} successfully deleted {movie_obj.title} movie."
 
     def like_movie(self, username: str, movie: Movie):
         if movie.owner.username == username:
@@ -73,7 +73,7 @@ class MovieApp:
 
         movie.likes += 1
         user_obj.movies_liked.append(movie)
-        return f"{user_obj.username} liked {movie.title} movie."
+        return f"{username} liked {movie.title} movie."
 
     def dislike_movie(self, username: str, movie: Movie):
         user_obj = self.find_user_by_username(username)
@@ -82,14 +82,14 @@ class MovieApp:
 
         movie.likes -= 1
         user_obj.movies_liked.remove(movie)
-        return f"{user_obj.username} disliked {movie.title} movie."
+        return f"{username} disliked {movie.title} movie."
 
     def display_movies(self):
         if len(self.movies_collection) == 0:
             return "No movies found."
 
         sorted_movies = sorted(self.movies_collection, key=lambda x: (-x.year, x.title))
-        return "\n".join([m.details() for m in sorted_movies])
+        return "\n".join([m.details() for m in sorted_movies]).strip()
 
     def __str__(self):
         result = f"All users: "
