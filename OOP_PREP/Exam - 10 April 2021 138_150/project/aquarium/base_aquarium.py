@@ -33,7 +33,7 @@ class BaseAquarium(ABC):
         pass
 
     def add_fish(self, fish: BaseFish):
-        if self.capacity == len(self.fish):
+        if self.capacity < len(self.fish) + 1:
             return "Not enough capacity."
 
         if fish.fish_type == "FreshwaterFish" and self.aquarium_type == "FreshwaterAquarium" \

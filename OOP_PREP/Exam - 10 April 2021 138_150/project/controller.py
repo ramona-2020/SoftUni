@@ -62,14 +62,17 @@ class Controller:
             if fish_type == "SaltwaterFish" and aquarium.aquarium_type != "SaltwaterAquarium":
                 return "Water not suitable."
 
-            # Create fish object and add it to aquarium
-            if fish_type == "FreshwaterFish":
-                fish = FreshwaterFish(fish_name, fish_species, price)
-                return aquarium.add_fish(fish)
+            if aquarium.capacity < len(aquarium.fish) + 1:
+                return "Not enough capacity."
+            else:
+                # Create fish object and add it to aquarium
+                if fish_type == "FreshwaterFish":
+                    fish = FreshwaterFish(fish_name, fish_species, price)
+                else:
+                    fish = SaltwaterFish(fish_name, fish_species, price)
 
-            if fish_type == "SaltwaterFish":
-                fish = SaltwaterFish(fish_name, fish_species, price)
-                return aquarium.add_fish(fish)
+                aquarium.add_fish(fish)
+                return f"Successfully added {fish_type} to {aquarium_name}."
 
     def feed_fish(self, aquarium_name: str):
         aquarium = self._get_aquarium_by_name(aquarium_name)
