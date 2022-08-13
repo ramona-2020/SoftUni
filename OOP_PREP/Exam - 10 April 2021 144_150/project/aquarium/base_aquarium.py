@@ -33,16 +33,18 @@ class BaseAquarium(ABC):
         pass
 
     def add_fish(self, fish: BaseFish):
-        if self.capacity < len(self.fish) + 1:
-            return "Not enough capacity."
+        if fish.fish_type not in ["FreshwaterFish", "SaltwaterFish"]:
+            return
 
-        if fish.fish_type == "FreshwaterFish" and self.aquarium_type == "FreshwaterAquarium" \
-                or fish.fish_type == "SaltwaterFish" and self.aquarium_type == "SaltwaterAquarium":
+        if len(self.fish) + 1 <= self.capacity:
             self.fish.append(fish)
             return f"Successfully added {fish.fish_type} to {self.name}."
 
+        return "Not enough capacity."
+
     def remove_fish(self, fish: BaseFish):
-        self.fish.remove(fish)
+        if fish in self.fish:
+            self.fish.remove(fish)
 
     def add_decoration(self, decoration: BaseDecoration):
         self.decorations.append(decoration)
@@ -53,8 +55,13 @@ class BaseAquarium(ABC):
 
     def __str__(self):
         result = f"{self.name}:\n"
-        result += f"Fish: {', '.join(f.name for f in self.fish) if self.fish else 'none'}\n"
-        result += f"Decorations: {len(self.decorations)}\n"
-        result += f"Comfort: {self.calculate_comfort()}"
+        if not self.fish:
+            result += f"Fish: none\n"
+            result += f"Decorations: {len(self.decorations)}\n"
+            result += f"Comfort: {self.calculate_comfort()}"
+        else:
+            result += f"Fish: {' '.join(f.name for f in self.fish)}\n"
+            result += f"Decorations: {len(self.decorations)}\n"
+            result += f"Comfort: {self.calculate_comfort()}"
 
         return result.strip()
