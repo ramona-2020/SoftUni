@@ -1,3 +1,6 @@
+from project.rooms.alone_old import AloneOld
+from project.rooms.alone_young import AloneYoung
+from project.rooms.old_couple import OldCouple
 from rooms.young_couple import YoungCouple
 from rooms.young_couple_with_children import YoungCoupleWithChildren
 from people.child import Child
@@ -8,15 +11,16 @@ everland = Everland()
 
 def test_one():
 
-    young_couple = YoungCouple("Johnsons", 150, 205)
-
-    child1 = Child(5, 1, 2, 1)
+    child1 = Child(5)
     child2 = Child(3, 2)
-    young_couple_with_children = YoungCoupleWithChildren("Peterson", 600, 520, child1, child2)
 
-    everland.add_room(young_couple)
+    #hlone_old = AloneOld("Philipp", 150) # ok
+    #alone_young = AloneYoung("Philipp", 150) # ok
+    #old_couple = OldCouple("Philipp", 150, 40) # ok
+    young_couple_with_children = YoungCoupleWithChildren("Philipp", 150, 40, child1)
+
     everland.add_room(young_couple_with_children)
-    #
+
     print(everland.get_monthly_consumptions())
     print(everland.pay())
     print(everland.status())

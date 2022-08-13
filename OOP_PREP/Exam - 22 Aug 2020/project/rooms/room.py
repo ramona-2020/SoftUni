@@ -31,6 +31,9 @@ class Room:
     def calculate_expenses(self, *args):
         self.expenses = Room._calculate_expenses(*args)
 
+    def get_monthly_expense(self):
+        return self.room_cost * 30
+
     @staticmethod
     def _calculate_expenses(*args) -> float:
         # args are Appliances list or children list

@@ -8,3 +8,4 @@ class AloneOld(Room):
 
     def __init__(self, family_name: str, pension: float):
         super().__init__(family_name, pension, self.MEMBERS_COUNT)
+
