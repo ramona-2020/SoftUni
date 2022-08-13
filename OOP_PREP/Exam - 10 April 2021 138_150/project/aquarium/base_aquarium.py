@@ -24,7 +24,8 @@ class BaseAquarium(ABC):
         self._name = value
 
     def calculate_comfort(self):
-        return sum(d.comfort for d in self.decorations)
+        comfort = sum([d.comfort for d in self.decorations])
+        return comfort
 
     @property
     @abstractmethod
@@ -35,9 +36,10 @@ class BaseAquarium(ABC):
         if self.capacity == len(self.fish):
             return "Not enough capacity."
 
-        if fish.fish_type in ["FreshwaterFish", "SaltwaterFish"]:
+        if fish.fish_type == "FreshwaterFish" and self.aquarium_type == "FreshwaterAquarium" \
+                or fish.fish_type == "SaltwaterFish" and self.aquarium_type == "SaltwaterAquarium":
             self.fish.append(fish)
-            return f"Successfully added {fish.fish_type} to {self.aquarium_type}."
+            return f"Successfully added {fish.fish_type} to {self.name}."
 
     def remove_fish(self, fish: BaseFish):
         self.fish.remove(fish)

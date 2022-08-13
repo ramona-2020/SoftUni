@@ -1,6 +1,7 @@
 from project.aquarium.base_aquarium import BaseAquarium
 from project.aquarium.freshwater_aquarium import FreshwaterAquarium
 from project.aquarium.saltwater_aquarium import SaltwaterAquarium
+from project.decoration.base_decoration import BaseDecoration
 from project.decoration.decoration_repository import DecorationRepository
 from project.decoration.ornament import Ornament
 from project.decoration.plant import Plant
@@ -30,23 +31,23 @@ class Controller:
         if decoration_type == "Ornament":
             decoration = Ornament()
             self.decorations_repository.add(decoration)
+            return f"Successfully added {decoration_type}."
         elif decoration_type == "Plant":
             decoration = Plant()
             self.decorations_repository.add(decoration)
+            return f"Successfully added {decoration_type}."
         else:
             return "Invalid decoration type."
 
     def insert_decoration(self, aquarium_name: str, decoration_type: str):
         aquarium = self._get_aquarium_by_name(aquarium_name)
+        decoration = self._get_decoration_by_type(decoration_type)
+        if aquarium and decoration:
+            aquarium.add_decoration(decoration)
+            self.decorations_repository.remove(decoration)
+            return f"Successfully added {decoration_type} to {aquarium_name}."
 
-        if aquarium:
-            for decoration in self.decorations_repository.decorations:
-                if decoration.decoration_type == decoration_type:
-                    aquarium.add_decoration(decoration)
-                    self.decorations_repository.remove(decoration)
-                    return f"Successfully added {decoration_type} to {aquarium_name}."
-
-            return f"There isn't a decoration of type {decoration_type}."
+        return f"There isn't a decoration of type {decoration_type}."
 
     def add_fish(self, aquarium_name: str, fish_type: str, fish_name: str, fish_species: str, price: float):
         if fish_type not in ["FreshwaterFish", "SaltwaterFish"]:
@@ -54,31 +55,29 @@ class Controller:
 
         aquarium = self._get_aquarium_by_name(aquarium_name)
 
-        if fish_type == "FreshwaterFish" and aquarium.aquarium_type != "FreshwaterAquarium":
-            return "Water not suitable."
+        if aquarium:
+            if fish_type == "FreshwaterFish" and aquarium.aquarium_type != "FreshwaterAquarium":
+                return "Water not suitable."
 
-        if fish_type == "SaltwaterFish" and aquarium.aquarium_type != "SaltwaterAquarium":
-            return "Water not suitable."
+            if fish_type == "SaltwaterFish" and aquarium.aquarium_type != "SaltwaterAquarium":
+                return "Water not suitable."
 
-        # Create fish object and add it to aquarium
-        if fish_type == "FreshwaterFish":
-            fish = FreshwaterFish(fish_name, fish_species, price)
-            result = aquarium.add_fish(fish)
-            return result
+            # Create fish object and add it to aquarium
+            if fish_type == "FreshwaterFish":
+                fish = FreshwaterFish(fish_name, fish_species, price)
+                return aquarium.add_fish(fish)
 
-        if fish_type == "SaltwaterFish":
-            fish = SaltwaterFish(fish_name, fish_species, price)
-            result = aquarium.add_fish(fish)
-            return result
+            if fish_type == "SaltwaterFish":
+                fish = SaltwaterFish(fish_name, fish_species, price)
+                return aquarium.add_fish(fish)
 
     def feed_fish(self, aquarium_name: str):
         aquarium = self._get_aquarium_by_name(aquarium_name)
-        fed_count = 0
-        for fish in aquarium.fish:
-            fish.eat()
-            fed_count += 1
+        if aquarium:
+            fed_count = len(aquarium.fish)
+            aquarium.feed()
 
-        return f"Fish fed: {fed_count}"
+            return f"Fish fed: {fed_count}"
 
     def calculate_value(self, aquarium_name: str):
         aquarium = self._get_aquarium_by_name(aquarium_name)
@@ -100,5 +99,14 @@ class Controller:
         for aquarium in self.aquariums:
             if aquarium.name == name:
                 return aquarium
+
+        return None
+
+    def _get_decoration_by_type(self, decoration_type: str) -> BaseDecoration or None:
+        decorations = self.decorations_repository.decorations
+
+        for decoration in decorations:
+            if decoration.decoration_type == decoration_type:
+                return decoration
 
         return None
