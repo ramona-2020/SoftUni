@@ -26,7 +26,7 @@ class reverse_iter2:
     def __iter__(self):
         return iter(self.values)
 
-# test code:
+# test_task_3 code:
 # reversed_list = reverse_iter([1, 2, 3, 4])
 # reversed_list = reverse_iter([5])
 reversed_list = reverse_iter2([17, 1, 6, 3])

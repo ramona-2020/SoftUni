@@ -7,6 +7,6 @@ def reverse_text(my_str: str):
         i -= 1
 
 
-# test code:
+# test_task_3 code:
 for char in reverse_text("step"):
     print(char, end='')

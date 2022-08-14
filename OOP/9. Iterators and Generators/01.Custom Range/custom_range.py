@@ -14,7 +14,7 @@ class custom_range():
 
 
 
-# test code:
+# test_task_3 code:
 one_to_ten = custom_range(1, 10)
 for num in one_to_ten:
     print(num)

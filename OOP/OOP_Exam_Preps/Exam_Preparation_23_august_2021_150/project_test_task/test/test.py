@@ -82,11 +82,11 @@ class Test(TestCase):
 		self.library.add_book(book_author, book_title_two)
 		self.library.rent_book(reader_name, book_author, book_title)
 
-		# must have test
+		# must have test_task_3
 		self.assertEqual([{book_author: book_title}], self.library.readers[reader_name])
 		self.assertTrue(book_title not in self.library.books_by_authors[book_author])
 
-		# optional test
+		# optional test_task_3
 		self.assertEqual(1, len(self.library.books_by_authors[book_author]))
 		self.assertTrue(book_title_two in self.library.books_by_authors[book_author])
 

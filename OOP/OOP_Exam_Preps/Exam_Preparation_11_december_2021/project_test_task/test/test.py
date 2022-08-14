@@ -17,7 +17,7 @@ class TeamTest(TestCase):
 		self.team = Team(self.NAME)
 		self.team.members = self.EMPTY_MEMBERS
 
-	# Validation test:
+	# Validation test_task_3:
 	def test__name__raises_value_error(self):
 		with self.assertRaises(ValueError) as context:
 			self.team.name = self.INVALID_NAME

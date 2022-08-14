@@ -22,7 +22,7 @@ class vowels:
                 return value_to_return
 
 
-# test code:
+# test_task_3 code:
 my_string = vowels('Abcedifuty0o')
 for char in my_string:
     print(char)

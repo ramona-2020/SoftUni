@@ -27,7 +27,7 @@ class Library:
                 return book
 
 
-# test code:
+# test_task_3 code:
 book1 = Book("Jabka i Svraka", "Author1", "Sofia")
 book2 = Book("Jultoto patence", "Author1", "Ruse")
 lbr1 = Library("Sofia Library")

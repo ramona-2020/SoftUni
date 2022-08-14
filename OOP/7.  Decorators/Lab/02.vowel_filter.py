@@ -8,7 +8,7 @@ def vowel_filter(function):
 	return wrapper
 
 
-# test code
+# test_task_3 code
 @vowel_filter
 def get_letters():
 	return ["a", "b", "c", "d", "e"]
